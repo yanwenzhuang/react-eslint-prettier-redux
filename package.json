@@ -20,7 +20,7 @@
     "css-loader": "3.4.2",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
-    "eslint": "^6.6.0",
+    "eslint": "5.14",
     "eslint-config-react-app": "^5.2.0",
     "eslint-loader": "3.0.3",
     "eslint-plugin-flowtype": "4.6.0",
@@ -65,18 +65,24 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
+      "git add"
     ]
   },
-  "prettier": {
-    "printWidth": 90,
-    "bracketSpacing": false,
-    "trailingComma": "es5"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "browserslist": {
     "production": [
@@ -148,6 +154,8 @@
   "devDependencies": {
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
     "prettier": "^1.19.1"
   }
 }

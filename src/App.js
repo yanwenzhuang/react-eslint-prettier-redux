@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <input type="button"></input>
       </header>
     </div>
   );
