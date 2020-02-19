@@ -1,12 +1,17 @@
 import React from "react";
 import "./App.css";
+import {Provider} from "react-redux";
+import store from "./component/sample/React-redux/store.js";
 import PureReduxCounter from "./component/sample/PureReduxCounter";
+import CounterComponent from "./component/sample/React-redux/CounterComponent";
 
 function App() {
   return (
-    <div className="App">
-      <PureReduxCounter />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <CounterComponent />
+      </div>
+    </Provider>
   );
 }
 
