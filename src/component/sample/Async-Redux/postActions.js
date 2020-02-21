@@ -15,8 +15,14 @@ function receivePosts(json) {
   };
 }
 
+// 来看一下我们写的第一个 thunk action 创建函数！
+// 虽然内部操作不同，你可以像其它 action 创建函数 一样使用它：
+// store.dispatch(fetchPosts('reactjs'))
 export function fetchPosts() {
   return function(dispatch) {
+    // Thunk middleware 知道如何处理函数。
+    // 这里把 dispatch 方法通过参数的形式传给函数，
+    // 以此来让它自己也能 dispatch action。
     dispatch(requestPosts()); // display the loading status
     const axiosConfig = {
       withCredentials: true,
