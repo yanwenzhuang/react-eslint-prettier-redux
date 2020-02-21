@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {fetchPosts} from "./postActions";
 import {isEmpty} from "lodash";
+import "./UserListComponent.css";
 
 class ListElement extends React.Component {
   constructor(props) {
@@ -13,11 +14,14 @@ class ListElement extends React.Component {
   }
 
   render() {
-    const {items, fetchPosts} = this.props;
+    const {items, isFetching, fetchPosts} = this.props;
+    console.log(isFetching);
     return (
-      <div>
-        <input type="button" onClick={() => fetchPosts()} value="调用后台"></input>
-        {!isEmpty(items) && (
+      <div className="userListWrapper">
+        <button onClick={() => fetchPosts()}>
+          {isFetching ? "loading....." : "Request data"}
+        </button>
+        {!isEmpty(items) && !isFetching && (
           <ul>
             {items.map(item => {
               return <li key={item.userId}>{item.userName}</li>;
@@ -32,6 +36,7 @@ class ListElement extends React.Component {
 function mapStateToProps(state) {
   return {
     items: state.post.items,
+    isFetching: state.post.isFetching,
   };
 }
 

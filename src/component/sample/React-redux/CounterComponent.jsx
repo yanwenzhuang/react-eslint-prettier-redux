@@ -48,12 +48,14 @@ class counterElement extends React.Component {
 }
 
 function mapStateToProps(state) {
+  // 定义component监听的store.state的值
   return {
     count: state.counter.count,
   };
 }
 
 function mapDispatchToProps(dispatch) {
+  // 定义了这个component可以操作到的action方法
   return bindActionCreators({addNumber, reduceNumber}, dispatch);
 }
 

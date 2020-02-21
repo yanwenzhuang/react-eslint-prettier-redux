@@ -8,11 +8,11 @@ var data = {
   data: [
     {
       userId: "1",
-      userName: "test1",
+      userName: "xiaoming",
     },
     {
       userId: "2",
-      userName: "test2",
+      userName: "xiaohuang",
     },
   ],
 };
@@ -31,7 +31,9 @@ let corsOptions = {
 
 app.get("/getUserInfo", cors(corsOptions), function(req, res, next) {
   // res.json({msg: "This is CORS-enabled for only example.com."});
-  res.end(JSON.stringify(data));
+  setTimeout(() => {
+    res.end(JSON.stringify(data));
+  }, 1000);
 });
 
 app.listen(8080, function() {

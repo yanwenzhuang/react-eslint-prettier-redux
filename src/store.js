@@ -13,7 +13,7 @@ const store = createStore(
     post: postReducer,
   }),
   applyMiddleware(
-    thunkMiddleware, // 允许我们 dispatch() 函数
+    thunkMiddleware, // 拦截异步的action
     loggerMiddleware // 一个很便捷的 middleware，用来打印 action 日志
   )
 );
