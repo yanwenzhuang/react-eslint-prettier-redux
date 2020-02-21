@@ -66,6 +66,7 @@ class Counter extends React.Component {
       this.setState({
         count: store.getState().count,
       });
+      // store.unsubsribe();
 
       // this.setState({
       //   count: store.getState().countReducer.count,
